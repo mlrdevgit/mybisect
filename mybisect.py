@@ -51,7 +51,7 @@ def main_with_text_args(text_args):
   parser.add_argument('-c', '--command', dest='fmt', default='{}', help='python string format to turn line into shell command (default: {})')
   parser.add_argument('file', help='text file to bisect, empty and # lines ignored')
   args = parser.parse_args(text_args)
-  main_with_args(args)
+  main_with_parsed_args(args)
  
 def main():
   main_with_text_args(None)
