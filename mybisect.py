@@ -31,7 +31,7 @@ def bisect(values, is_fail_value, report_fn = default_report_fn):
 
 def run_subprocess_evaluation(command):
   import subprocess
-  completion = subprocess.call(args, shell=True)
+  completion = subprocess.call(command, shell=True)
   return completion == 0
 
 def create_subprocess_evaluation(command_format):
