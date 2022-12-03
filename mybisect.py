@@ -22,7 +22,7 @@ def bisect_range(values, left, right, is_good_value, report_fn = default_report_
     if is_good_value(val):
       report_fn('no fails', -1, None)
       return (None, -1)
-  report_fn('first fail', mid, val)
+  report_fn('first fail', val, mid)
   return (val, mid)
 
 def bisect(values, is_fail_value, report_fn = default_report_fn):
@@ -39,8 +39,9 @@ def create_subprocess_evaluation(command_format):
 
 def main_with_parsed_args(args):
   lines = []
-  with open(args.infile) as f:
+  with open(args.file) as f:
     for l in f:
+      l = l.rstrip()
       if len(l) > 0 and not l.startswith("#"):
         lines.append(l)
   bisect(lines, create_subprocess_evaluation(args.fmt))
@@ -52,7 +53,7 @@ def main_with_text_args(text_args):
   parser.add_argument('file', help='text file to bisect, empty and # lines ignored')
   args = parser.parse_args(text_args)
   main_with_parsed_args(args)
- 
+
 def main():
   main_with_text_args(None)
 
